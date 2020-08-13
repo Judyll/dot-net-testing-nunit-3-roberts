@@ -23,7 +23,7 @@ namespace Loans.Tests
              */
             var sut = new LoanTerm(1);
 
-            Assert.That(sut.ToMonths(), Is.EqualTo(12));
+            Assert.That(sut.ToMonths(), Is.EqualTo(12), "Months should be 12 * number of years");
 
             /**
              * Using the logical Arrange, Act, Assert Test Phase
@@ -103,6 +103,24 @@ namespace Loans.Tests
 
             Assert.That(x, Is.SameAs(y));
             Assert.That(z, Is.Not.SameAs(x));
+        }
+
+        [Test]
+        public void Double()
+        {
+            double a = 1.0 / 3.0;
+
+            /**
+             * Use Within to specify tolerance that NUnit will use when determining
+             * equality.
+             */
+            Assert.That(a, Is.EqualTo(0.33).Within(0.004));
+            /**
+             * In addition to specifying a fixed value for the tolerance, we can specify
+             * it as a percentage. So, in this example, we are happy to accept the tolerance
+             * of 10%.
+             */
+            Assert.That(a, Is.EqualTo(0.33).Within(10).Percent);
         }
     }
 }
