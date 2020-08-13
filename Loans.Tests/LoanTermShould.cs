@@ -1,5 +1,6 @@
 ﻿using Loans.Domain.Applications;
 using NUnit.Framework;
+using System;
 using System.Collections.Generic;
 
 namespace Loans.Tests
@@ -121,6 +122,34 @@ namespace Loans.Tests
              * of 10%.
              */
             Assert.That(a, Is.EqualTo(0.33).Within(10).Percent);
+        }
+
+        [Test]
+        public void NotAllowZeroYears()
+        {
+            /**
+             * The first parameter is an action that gets executed and should cause
+             * an exception to be thrown.
+             * In our case, the action would be to create a new LoanTerm instance
+             * with the value of 0 years.
+             * The second parameter allows us to specify that this action throws an
+             * exception.
+             */
+            Assert.That(() => new LoanTerm(0), Throws.TypeOf<ArgumentOutOfRangeException>());
+            /**
+             * This uses the Matches method and get the value of
+             * the property ParamName of the class ArgumentOutOfRangeException
+             */
+            Assert.That(() => new LoanTerm(0), Throws.TypeOf<ArgumentOutOfRangeException>()
+                .With
+                .Matches<ArgumentOutOfRangeException>(ex => ex.ParamName == "years"));
+            /**
+             * Assert using the message being outputted
+             */
+            Assert.That(() => new LoanTerm(0), Throws.TypeOf<ArgumentOutOfRangeException>()
+                .With
+                .Message
+                .EqualTo("Please specify a value greater than 0. (Parameter 'years')"));
         }
     }
 }
