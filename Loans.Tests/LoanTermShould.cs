@@ -23,6 +23,31 @@ namespace Loans.Tests
             var sut = new LoanTerm(1);
 
             Assert.That(sut.ToMonths(), Is.EqualTo(12));
+
+            /**
+             * Using the logical Arrange, Act, Assert Test Phase
+             */
+
+            // Arrange
+            // var sut = new LoanTerm(1);
+
+            // Act
+            // var numberOfMonths = sut.ToMonths();
+
+            // Assert
+            // Assert.That(numberOfMonths, Is.EqualTo(12));
+        }
+
+        [Test]
+        public void StoreYears()
+        {
+            var sut = new LoanTerm(1);
+
+            /**
+             * We want to check if the Years property has been set properly.
+             * We are now skipping the "Act" logical phase.
+             */
+            Assert.That(sut.Years, Is.EqualTo(1));
         }
     }
 }
