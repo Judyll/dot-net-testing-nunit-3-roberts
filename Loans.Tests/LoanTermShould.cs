@@ -17,6 +17,7 @@ namespace Loans.Tests
          * another NUnit attribute called Test
          */
         [Test]
+        [Ignore("Need to complete the update first.")]
         public void ReturnTermInMonths()
         {
             /**
